@@ -142,7 +142,10 @@ In RenderDoc to help out with this, if you flush a memory region then the tool a
 >Note the memory allocation is by no means 1:1. You can allocate a large amount of memory and as long as you obey the above restrictions you can place several images or buffers in it at different offsets. The requirements include an alignment if you are placing the resource at a non-zero offset. In fact you will definitely want to do this in any real application, as there are limits on the total number of allocations allowed.
 There is an additional alignment requirement bufferImageGranularity - a minimum separation required between memory used for a VkImage and memory used for a VkBuffer in the same VkDeviceMemory. Read the spec for more details, but this mostly boils down to an effective page size, and requirement that each page is only used for one type of resource.
 
-注意，内存分配不是1:1的。
+注意，内存分配不是1:1的。你可以分配一篇很大的内存，只要你遵守上面的限制，
+你可以在不同的内存偏移上放置若干个不同的Image和Buffer。
+如果你把资源放在了不为0的偏移上，还需要一个对齐的属性。
+事实上，你会在任意的应用上最终决定怎么做，因为总的分配的数量是有限制的。
 
 >Once you have the right memory type and size and alignment, you can bind it with vkBindBufferMemory or vkBindImageMemory. This binding is immutable, and must happen before you start using the buffer or image.
 
