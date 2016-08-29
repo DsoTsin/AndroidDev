@@ -7,9 +7,9 @@
 
 当前Android N VR的开发需要Nexus 6P来支持，目前市面上暂时没有手机能满足`DayDreamVR`的要求。
 
-不过我们可以使用另外一台手机作为DayDreamVR的手柄，在Nexus 6P需要打开DayDreamVR的开发者选项和手柄配对即可使用。
-
 ![dev-kit](images/an_daydream_devkit.png)
+
+不过我们可以使用另外一台手机作为DayDreamVR的手柄，在Nexus 6P需要打开DayDreamVR的开发者选项通过蓝牙和手柄配对即可使用。
 
 ![paint](images/an_daydream_paint.png)
 
@@ -19,6 +19,10 @@
 
 1. [Designing & Developing for the Daydream Controller - Google I/O 2016][1]
 2. [Set up a Daydream Development Kit][2]
+
+
+应用场景：VR 相册？
+VR 直播？
 
 ## Vulkan
 
