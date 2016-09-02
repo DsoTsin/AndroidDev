@@ -33,6 +33,8 @@ V8的编译有两套选择GYP和GN。
 由于笔者使用的是Mac，所以只能采用GYP来构建V8。
 详细的构建方法见[链接][2]。
 
+> 图省事的话，也可以直接使用笔者编译的[libv8rt.so][4]，这个库是基于[v8-5.5.1][5]构建的。
+
 ---
 
 ### V8 RN适配
@@ -133,8 +135,6 @@ V8的编译有两套选择GYP和GN。
   	  Isolate* m_isolate = Isolate::New(create_params);
 	  s_globalContextRefToV8Executor[m_isolate] = this;
 	  // 增加计数，防止数据重新初始化
-	  m_isolate->Enter();
-	  
 	  v8::HandleScope handle_scope(m_isolate);
 	  /**
 	   * 创建JS执行上下文
@@ -163,8 +163,9 @@ V8的编译有两套选择GYP和GN。
 	
 	  Local<Script> compiled_script;
 	  // 编译JS
-	  if (!Script::Compile(context, script).ToLocal(&compiled_script)) 		 ReportException(GetIsolate(), &try_catch);
-	    return false;
+	  if (!Script::Compile(context, script).ToLocal(&compiled_script)) 
+	  	ReportException(GetIsolate(), &try_catch);
+	  	return false;
 	  }
 	
 	  Local<Value> result;
@@ -185,9 +186,13 @@ V8引擎的实现大量地利用了C++ RAII的技术，实现过程中应该注�
 ## 参考
 
 1. [V8 Embedder's Guide][3]
+2. [TsinStudio's HelloV8 Sample][6]
 
 
 
 [1]:https://github.com/TsinStudio/AndroidDev/blob/master/JIT_Introduction.md
 [2]:https://github.com/v8/v8/wiki/D8%20on%20Android
 [3]:https://github.com/v8/v8/wiki/Embedder's%20Guide
+[4]:https://github.com/TsinStudio/v8-prebuilt/tree/ndk-r10d-armeabi-v7a-release
+[5]:https://github.com/TsinStudio/v8-5.5.1
+[6]:https://github.com/TsinStudio/AndroidDevSample/tree/master/HelloV8
